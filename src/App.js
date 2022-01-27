@@ -11,10 +11,10 @@ const App = ( props ) => {
   const [errorMessage, setErrorMessage] = useState('some error happened...')
   
   useEffect(() =>  {
-    noteService
-      .getAll()
-      .then(initialNotes => {
-        setNotes(initialNotes)
+    axios
+      .get('http://localhost:3001/api/notes')
+      .then(res => {
+        setNotes(res.data)
       })
   }, [])
 
