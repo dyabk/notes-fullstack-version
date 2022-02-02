@@ -3,19 +3,18 @@ import Footer from './components/Footer'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import noteService from './services/notes'
-import axios from 'axios'
 
-const App = ( props ) => {
+const App = () => {
   const [notes, setNotes ] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null)
   
   useEffect(() =>  {
-    axios
-      .get('http://localhost:3001/api/notes')
-      .then(res => {
-        setNotes(res.data)
+    noteService
+      .getAll
+      .then(initialNotes => {
+        setNotes(initialNotes)
       })
   }, [])
 
